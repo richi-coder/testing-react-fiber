@@ -1,13 +1,12 @@
-import { Physics, useBox } from "@react-three/cannon"
+import { Physics } from "@react-three/cannon"
 import { OrbitControls } from "@react-three/drei"
-import { useFrame, useLoader } from "@react-three/fiber"
 import { useRef } from "react"
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 import Car from "./Car"
+import Town from "./Town"
 
 function App() {
   
-  const gltfStreet = useLoader(GLTFLoader, 'street/scene.gltf')
+  
   // const [xPosition, setXPosition] = useState(-350)
   const delorian = useRef();
 
@@ -23,13 +22,10 @@ function App() {
   //   state.camera.position.x = delorian.current.position.x;
   // })
 
-  
-  
-
   return (
     <>
       <Physics>
-      <primitive object={gltfStreet.scene} position={[0,0,0]} rotation={[0,0,0]} scale={10} />
+      <Town />
       <Car />
       </Physics>
       <OrbitControls />
