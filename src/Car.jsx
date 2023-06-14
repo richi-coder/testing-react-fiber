@@ -1,16 +1,21 @@
 import { useBox } from "@react-three/cannon"
-import { useLoader } from "@react-three/fiber"
+import { useFrame, useLoader } from "@react-three/fiber"
+import { useEffect, useRef } from "react"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 
 
 function Car() {
     const gltfDelorian = useLoader(GLTFLoader, 'delorian/scene.gltf')
-    const [ref, api] = useBox(() => ({ mass: 1, position: [-350,15,5] }))
+    const [carBody, carApi] = useBox(() => ({ mass: 1000, position: [-350,25,5], rotation: [0,-7.9,0], args: [3,2,3] }))
 
-    
+    // useFrame((state, delta) =>  {
+    //     // carApi.applyForce([10000,0,0],[10,0,0])
+    //     // state.camera.position.x = delorian.current.position.x;
+    //     })
+
 
   return (
-    <primitive ref={ref} object={gltfDelorian.scene}  rotation={[0,-7.9,0]} scale={0.12} />
+    <primitive ref={carBody} object={gltfDelorian.scene} scale={0.1} />
   )
 }
 

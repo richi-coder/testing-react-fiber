@@ -3,6 +3,7 @@ import { OrbitControls } from "@react-three/drei"
 import { useRef } from "react"
 import Car from "./Car"
 import Town from "./Town"
+import Box from "./Box"
 
 function App() {
   
@@ -17,16 +18,14 @@ function App() {
   //   return
   // }, [xPosition])
 
-  // useFrame((state, delta) =>  {
-  //   delorian.current.position.x += 5
-  //   state.camera.position.x = delorian.current.position.x;
-  // })
+  
 
   return (
     <>
-      <Physics>
-      <Town />
-      <Car />
+      <Physics gravity={[0,-9.81,0]}>
+        <Town />
+        <Car />
+        <Box />
       </Physics>
       <OrbitControls />
     </>
