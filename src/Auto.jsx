@@ -8,9 +8,9 @@ import { useFrame } from "@react-three/fiber";
 
 
 const width = 16;
-const height = 2;
+const height = 8;
 const front = width;
-const back = width*1.2;
+const back = width;
 const radius = 5;
 const dimensions = [width, height, front * 2]
 
@@ -40,13 +40,13 @@ function Auto() {
     
     useControls(vehicleApi, chassisApi)
 
-    // useFrame(() => {
-    //   setTimeout(() => {
-    //     vehicleApi.setSteeringValue(Math.PI/6,0)
-    //     vehicleApi.setSteeringValue(Math.PI/6,1)
-    //     vehicleApi.applyEngineForce(1500,3)
-    //   }, 2000);
-    // });
+    useFrame(() => {
+      setTimeout(() => {
+        vehicleApi.setSteeringValue(Math.PI/6,0)
+        vehicleApi.setSteeringValue(Math.PI/6,1)
+        vehicleApi.applyEngineForce(1500,3)
+      }, 2000);
+    });
         
     
 

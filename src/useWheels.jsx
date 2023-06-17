@@ -4,7 +4,7 @@ import { useRef } from "react"
 const width = 16;
 const height = 8;
 const front = width;
-const back = width*1.2;
+const back = width;
 const radius = 2.5;
 
 function useWheels() {
