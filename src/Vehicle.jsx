@@ -3,6 +3,7 @@ import Box from "./Box";
 import Wheel from "./Wheel"
 import { useBox, useCylinder, useRaycastVehicle } from "@react-three/cannon"
 import useWheels from "./useWheels";
+import useControls from "./useControls";
 
 
 const width = 16;
@@ -13,14 +14,17 @@ const radius = 2.5;
 const dimensions = [front * 2, height, width]
 
 function Vehicle() {
+    
     const [ chassis, chassisApi ] = useBox(
         () => ({
-        mass: 100,
+        allowSleep: false,
+        mass: 150,
         position: [0,10,0],
         rotation: [0,0,0],
         args: dimensions
         }),
-        useRef(null))
+        useRef(null),
+        );
 
     const [ wheels, wheelInfos ] = useWheels()
 
@@ -30,19 +34,16 @@ function Vehicle() {
         wheelInfos,
         wheels
         }),
-        useRef(null))
-
-    useEffect(() => {
-    window.addEventListener('click', () => {
-        vehicleApi.applyEngineForce(1500,3)
-    })
+        useRef(null),
+        );
+    
+    useControls(vehicleApi, chassisApi)
         
-    }, [vehicleApi, chassisApi])
     
 
   return (
     <group ref={vehicle} name="vehicle">
-        <Box chassisRef={chassis} dimensions={dimensions} />
+        <Box chassisRef={chassis} dimensions={dimensions} name='chassis' />
         <Wheel wheelRef={wheels[0]} radius={radius} />
         <Wheel wheelRef={wheels[1]} radius={radius} />
         <Wheel wheelRef={wheels[2]} radius={radius} />

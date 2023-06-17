@@ -11,39 +11,39 @@ function useWheels() {
     const wheels = new Array(4).fill(useRef(null))
 
     const wheelInfo = {
-        axleLocal: [-1, 0, 0], // This is inverted for asymmetrical wheel models (left v. right sided)
-        customSlidingRotationalSpeed: -30,
-        dampingCompression: 4.4,
-        dampingRelaxation: 10,
-        directionLocal: [0, -1, 0], // set to same as Physics Gravity
-        frictionSlip: 2,
-        maxSuspensionForce: 1e4,
-        maxSuspensionTravel: 0.3,
         radius,
-        suspensionRestLength: 0.3,
-        suspensionStiffness: 30,
+        directionLocal: [0, -1, 0],
+        axleLocal: [1, 0, 0],
+        suspensionStiffness: 60,
+        suspensionRestLength: 0.1,
+        frictionSlip: 5,
+        dampingRelaxation: 2.3,
+        dampingCompression: 4.4,
+        maxSuspensionForce: 100000,
+        rollInfluence: 0.01,
+        maxSuspensionTravel: 0.1,
+        customSlidingRotationalSpeed: -30,
         useCustomSlidingRotationalSpeed: true,
-        rollInfluence: 0.01
       }
 
       const wheelInfo1 = {
         ...wheelInfo,
-        chassisConnectionPointLocal: [-width * 0.65, height, front],
+        chassisConnectionPointLocal: [-width, height, front],
         isFrontWheel: true,
       }
       const wheelInfo2 = {
         ...wheelInfo,
-        chassisConnectionPointLocal: [width * 0.65, height, front],
+        chassisConnectionPointLocal: [width, height, front],
         isFrontWheel: true,
       }
       const wheelInfo3 = {
         ...wheelInfo,
-        chassisConnectionPointLocal: [-width * 0.65, height, back],
+        chassisConnectionPointLocal: [-width, height, back],
         isFrontWheel: false,
       }
       const wheelInfo4 = {
         ...wheelInfo,
-        chassisConnectionPointLocal: [width * 0.65, height, back],
+        chassisConnectionPointLocal: [width, height, back],
         isFrontWheel: false,
       }
 
@@ -53,7 +53,13 @@ function useWheels() {
         collisionFilterGroup: 0,
         mass: 1,
         material: 'wheel',
-        shapes: [{ args: [radius, radius, 5, 25], rotation: [Math.PI/2, 0, 0], type: 'Cylinder' }],
+        shapes: [
+          {
+            args: [radius, radius, 5, 25],
+            rotation: [Math.PI/2, 0, 0],
+            type: 'Cylinder'
+          }
+        ],
         type: 'Kinematic',
       })
 

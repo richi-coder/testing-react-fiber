@@ -1,6 +1,8 @@
+let debug = false;
+
 function Wheel({ wheelRef, radius }) {
 
-  return (
+  return debug && (
     <group ref={wheelRef}>
         <mesh rotation={[Math.PI/2,0,0]}>
             <cylinderGeometry args={[radius, radius, 5, 25]} />
