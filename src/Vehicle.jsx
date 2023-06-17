@@ -3,8 +3,8 @@ import Box from "./Box";
 import Wheel from "./Wheel"
 import { useBox, useCylinder, useRaycastVehicle } from "@react-three/cannon"
 
-const width = 1.1;
-const height = 0.1;
+const width = 8;
+const height = 4;
 const front = width;
 const back = width;
 const radius = 0.7;
@@ -45,19 +45,22 @@ const wheelInfo = {
     isFrontWheel: false,
   }
 
+  const dimensions = [width, height, front * 2]
+
 function Vehicle() {
 
     const wheels = [
-        useCylinder(() => ({ mass: 1, args: [5,5,5,15], position: [-20,7,15], rotation: [Math.PI/2,0,0] }))[0],
-        useCylinder(() => ({ mass: 1, args: [5,5,5,15], position: [-20,7,-15], rotation: [Math.PI/2,0,0] }))[0],
-        useCylinder(() => ({ mass: 1, args: [5,5,5,15], position: [20,7,15], rotation: [Math.PI/2,0,0] }))[0],
-        useCylinder(() => ({ mass: 1, args: [5,5,5,15], position: [20,7,-15], rotation: [Math.PI/2,0,0] }))[0]
+        useCylinder(() => ({ mass: 1, args: [5,5,5,25], position: [-20,7,15], rotation: [Math.PI/2,0,0] }))[0],
+        useCylinder(() => ({ mass: 1, args: [5,5,5,25], position: [-20,7,-15], rotation: [Math.PI/2,0,0] }))[0],
+        useCylinder(() => ({ mass: 1, args: [5,5,5,25], position: [20,7,15], rotation: [Math.PI/2,0,0] }))[0],
+        useCylinder(() => ({ mass: 1, args: [5,5,5,25], position: [20,7,-15], rotation: [Math.PI/2,0,0] }))[0]
     ]
 
     const [ chassis, chassisApi ] = useBox(() => ({
         mass: 1,
         position: [0,10,0],
-        rotation: [0,0,0]
+        rotation: [0,0,0],
+        args: dimensions
     }))
 
     const [ vehicle, vehicleApi ] = useRaycastVehicle(() => ({
@@ -77,7 +80,7 @@ function Vehicle() {
 
   return (
     <group ref={vehicle}>
-        <Box boxRef={chassis} />
+        <Box chassisRef={chassis} dimensions={dimensions} />
         <Wheel wheelRef={wheels[0]} radius={radius} />
         <Wheel wheelRef={wheels[1]} radius={radius} />
         <Wheel wheelRef={wheels[2]} radius={radius} />

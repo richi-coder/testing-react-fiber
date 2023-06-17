@@ -1,8 +1,8 @@
-function Box({ boxRef }) {
+function Box({ chassisRef, dimensions }) {
     
   return (
-    <mesh ref={boxRef}>
-        <boxGeometry args={[45,2,10]} />
+    <mesh ref={chassisRef}>
+        <boxGeometry args={dimensions} />
         <meshBasicMaterial color='blue' />
     </mesh>
   )

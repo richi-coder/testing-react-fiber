@@ -23,7 +23,7 @@ function Wheel({ wheelRef, radius }) {
 
   return (
     <mesh ref={wheelRef}>
-      <cylinderGeometry args={[7, 7, 5, 15]} />
+      <cylinderGeometry args={[7, 7, 5, 25]} />
       <meshBasicMaterial transparent={true} opacity={0.15} />
     </mesh>
   );
