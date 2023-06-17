@@ -1,10 +1,12 @@
 function Box({ chassisRef, dimensions }) {
     
   return (
-    <mesh ref={chassisRef}>
-        <boxGeometry args={dimensions} />
-        <meshBasicMaterial color='blue' />
-    </mesh>
+    <group ref={chassisRef}>
+      <mesh>
+          <boxGeometry args={dimensions} />
+          <meshBasicMaterial transparent={true} opacity={0.3} color='blue' />
+      </mesh>
+    </group>
   )
 }
 

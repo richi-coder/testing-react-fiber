@@ -23,7 +23,7 @@ function App() {
 
   return (
     <>
-      <Physics gravity={[0,-9.81,0]}>
+      <Physics gravity={[0,-9.81,0]} broadphase="SAP">
         <Town />
         {/* <Car /> */}
         {/* <Box /> */}
