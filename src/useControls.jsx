@@ -15,7 +15,7 @@ function useControls(vehicleApi, chassisApi) {
   }, [])
 
   // useEffect(() => {
-  //   if (controls) vehicleApi.setSteeringValue(0.5,0)
+  //   if (controls) chassisApi.applyForce([500000,0,0],[0,0,0])
   // }, [controls, vehicleApi, chassisApi])
   
   

@@ -21,8 +21,7 @@ function Auto() {
         () => ({
         allowSleep: false,
         mass: 150,
-        position: [0,10,0],
-        // rotation: [0,0,0],
+        // position: [0,10,0],
         args: dimensions
         }),
         useRef(null),
