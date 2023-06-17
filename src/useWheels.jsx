@@ -13,15 +13,15 @@ function useWheels() {
     const wheelInfo = {
         radius,
         directionLocal: [0, -1, 0],
-        axleLocal: [1, 0, 0],
+        axleLocal: [-1, 0, 0],
         suspensionStiffness: 60,
         suspensionRestLength: 0.1,
-        frictionSlip: 5,
+        frictionSlip: 1.4,
         dampingRelaxation: 2.3,
         dampingCompression: 4.4,
         maxSuspensionForce: 100000,
-        rollInfluence: 0.01,
-        maxSuspensionTravel: 0.1,
+        rollInfluence: 0.5,
+        maxSuspensionTravel: 0.3,
         customSlidingRotationalSpeed: -30,
         useCustomSlidingRotationalSpeed: true,
       }
@@ -38,12 +38,12 @@ function useWheels() {
       }
       const wheelInfo3 = {
         ...wheelInfo,
-        chassisConnectionPointLocal: [-width, height, back],
+        chassisConnectionPointLocal: [-width, height, -back],
         isFrontWheel: false,
       }
       const wheelInfo4 = {
         ...wheelInfo,
-        chassisConnectionPointLocal: [width, height, back],
+        chassisConnectionPointLocal: [width, height, -back],
         isFrontWheel: false,
       }
 
