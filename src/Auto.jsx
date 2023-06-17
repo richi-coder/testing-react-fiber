@@ -19,7 +19,7 @@ function Auto() {
     const [ chassisBody, chassisApi ] = useBox(
         () => ({
         allowSleep: false,
-        mass: 15000,
+        mass: 1500,
         position: [0,10,15],
         onCollide: (e) => console.log('bonk', e.body.userData),
         args: dimensions
