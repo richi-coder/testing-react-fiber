@@ -8,7 +8,7 @@ const back = width*1.2;
 const radius = 2.5;
 
 function useWheels() {
-    const wheels = new Array(4).fill(useRef(null))
+    const wheels = [useRef(null), useRef(null), useRef(null), useRef(null)];
 
     const wheelInfo = {
         radius,
@@ -22,28 +22,28 @@ function useWheels() {
         maxSuspensionForce: 100000,
         rollInfluence: 0.5,
         maxSuspensionTravel: 0.3,
-        customSlidingRotationalSpeed: -30,
+        customSlidingRotationalSpeed: -30,  
         useCustomSlidingRotationalSpeed: true,
       }
 
       const wheelInfo1 = {
         ...wheelInfo,
-        chassisConnectionPointLocal: [-width * 0.65, height * 0.1, front],
+        chassisConnectionPointLocal: [-width * 0.7, height * 0.5, front],
         isFrontWheel: true,
       }
       const wheelInfo2 = {
         ...wheelInfo,
-        chassisConnectionPointLocal: [width * 0.65, height * 0.1, front],
+        chassisConnectionPointLocal: [width * 0.7, height * 0.5, front],
         isFrontWheel: true,
       }
       const wheelInfo3 = {
         ...wheelInfo,
-        chassisConnectionPointLocal: [-width * 0.65, height * 0.1, -back],
+        chassisConnectionPointLocal: [-width * 0.7, height * 0.5, -back],
         isFrontWheel: false,
       }
       const wheelInfo4 = {
         ...wheelInfo,
-        chassisConnectionPointLocal: [width * 0.65, height * 0.1, -back],
+        chassisConnectionPointLocal: [width * 0.7, height * 0.5, -back],
         isFrontWheel: false,
       }
 
