@@ -2,11 +2,11 @@ let debug = false;
 
 function Wheel({ wheelRef, radius }) {
 
-  return debug && (
+  return (
     <group ref={wheelRef}>
-        <mesh rotation={[Math.PI/2,0,0]}>
+        <mesh rotation={[0, 0, Math.PI/2]} position={[0,15,0]} >
             <cylinderGeometry args={[radius, radius, 5, 25]} />
-            <meshBasicMaterial transparent={true} opacity={0.15} />
+            <meshBasicMaterial transparent={true} opacity={0.15} color='blue' />
         </mesh>
     </group>
   );

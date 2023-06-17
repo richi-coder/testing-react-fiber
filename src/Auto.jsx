@@ -1,26 +1,28 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import Box from "./Box";
 import Wheel from "./Wheel"
-import { useBox, useCylinder, useRaycastVehicle } from "@react-three/cannon"
+import { useBox, useRaycastVehicle } from "@react-three/cannon"
 import useWheels from "./useWheels";
 import useControls from "./useControls";
+import { useFrame } from "@react-three/fiber";
+import { Quaternion, Vector3 } from "three";
 
 
 const width = 16;
-const height = 8;
+const height = 2;
 const front = width;
 const back = width*1.2;
-const radius = 2.5;
+const radius = 5;
 const dimensions = [front * 2, height, width]
 
-function Vehicle() {
+function Auto() {
     
     const [ chassis, chassisApi ] = useBox(
         () => ({
         allowSleep: false,
         mass: 150,
         position: [0,10,0],
-        rotation: [0,0,0],
+        // rotation: [0,0,0],
         args: dimensions
         }),
         useRef(null),
@@ -38,6 +40,25 @@ function Vehicle() {
         );
     
     useControls(vehicleApi, chassisApi)
+
+    // useFrame((state) => {
+    
+    //     let position = new Vector3(0,0,0);
+    //     position.setFromMatrixPosition(chassis.current.matrixWorld);
+    
+    //     let quaternion = new Quaternion(0, 0, 0, 0);
+    //     quaternion.setFromRotationMatrix(chassis.current.matrixWorld);
+    
+    //     let wDir = new Vector3(0,0,1);
+    //     wDir.applyQuaternion(quaternion);
+    //     wDir.normalize();
+    
+    //     let cameraPosition = position.clone().add(wDir.clone().multiplyScalar(1).add(new Vector3(0, 3, 0)));
+        
+    //     wDir.add(new Vector3(0, 0.2, 0));
+    //     state.camera.position.copy(cameraPosition);
+    //     state.camera.lookAt(position);
+    //   });
         
     
 
@@ -52,4 +73,4 @@ function Vehicle() {
   )
 }
 
-export default Vehicle
+export default Auto

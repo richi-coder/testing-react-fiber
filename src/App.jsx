@@ -4,7 +4,7 @@ import { useRef } from "react"
 import Car from "./Car"
 import Town from "./Town"
 import Box from "./Box"
-import Vehicle from "./Vehicle"
+import Auto from "./Auto"
 
 function App() {
   
@@ -27,7 +27,7 @@ function App() {
         <Town />
         {/* <Car /> */}
         {/* <Box /> */}
-        <Vehicle />
+        <Auto />
       </Physics>
       <OrbitControls />
     </>

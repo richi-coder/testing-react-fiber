@@ -14,15 +14,13 @@ function useControls(vehicleApi, chassisApi) {
     }
   }, [])
 
-  useEffect(() => {
-    if (controls) vehicleApi.applyEngineForce(1500,2)
-  }, [controls, vehicleApi, chassisApi])
+  // useEffect(() => {
+  //   if (controls) vehicleApi.setSteeringValue(0.5,0)
+  // }, [controls, vehicleApi, chassisApi])
   
   
 
-  return (
-    <div>useControls</div>
-  )
+  return controls
 }
 
 export default useControls

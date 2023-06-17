@@ -52,12 +52,12 @@ function useWheels() {
       const propsFunc = () => ({
         collisionFilterGroup: 0,
         mass: 1,
-        material: 'wheel',
+        // material: 'wheel',
         shapes: [
           {
             args: [radius, radius, 5, 25],
             rotation: [Math.PI/2, 0, 0],
-            type: 'Cylinder'
+            type: 'Cylinder',
           }
         ],
         type: 'Kinematic',
