@@ -1,5 +1,3 @@
-let debug = false;
-
 function Wheel({ wheelRef, radius }) {
 
   return (

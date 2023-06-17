@@ -19,7 +19,9 @@ function Auto() {
     const [ chassisBody, chassisApi ] = useBox(
         () => ({
         allowSleep: false,
-        mass: 150,
+        mass: 15000,
+        position: [0,10,15],
+        onCollide: (e) => console.log('bonk', e.body.userData),
         args: dimensions
         }),
         useRef(null),
@@ -38,10 +40,13 @@ function Auto() {
     
     useControls(vehicleApi, chassisApi)
 
-    useFrame((state) => {
-      vehicleApi.setSteeringValue(0.5,0)
-      vehicleApi.setSteeringValue(0.5,1)
-      });
+    // useFrame(() => {
+    //   setTimeout(() => {
+    //     vehicleApi.setSteeringValue(Math.PI/6,0)
+    //     vehicleApi.setSteeringValue(Math.PI/6,1)
+    //     vehicleApi.applyEngineForce(1500,3)
+    //   }, 2000);
+    // });
         
     
 

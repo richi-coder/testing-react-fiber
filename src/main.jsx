@@ -5,7 +5,7 @@ import './index.css'
 import { Canvas } from '@react-three/fiber'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <Canvas camera={{ position: [-40,15,-20] }} frameloop="always">
+    <Canvas camera={{ position: [-50,25,-50] }} frameloop="demand">
         <App />
         <ambientLight intensity={0.5}/>
         <directionalLight color='red' position={[0,0,5]} />
