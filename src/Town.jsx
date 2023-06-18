@@ -11,7 +11,7 @@ function Town() {
     // <primitive ref={ref} object={gltfStreet.scene}  scale={10} />
     <mesh ref={planeRef}>
       <planeGeometry args={[100,100]} />
-      <meshBasicMaterial color='black' />
+      <meshBasicMaterial color='gray' />
     </mesh>
   )
 }

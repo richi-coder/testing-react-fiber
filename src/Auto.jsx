@@ -20,7 +20,7 @@ function Auto() {
         () => ({
         allowSleep: false,
         mass: 1500,
-        position: [0,20,15],
+        position: [0,10,0],
         onCollide: (e) => console.log('bonk', e.body.userData),
         args: dimensions
         }),
@@ -41,14 +41,7 @@ function Auto() {
     useControls(vehicleApi, chassisApi)
 
     useFrame(() => {
-      window.addEventListener('keydown', () => {
-        vehicleApi.setSteeringValue(Math.PI/6,0)
-        vehicleApi.setSteeringValue(Math.PI/6,1)
-        vehicleApi.applyEngineForce(1500,2)
-        vehicleApi.applyEngineForce(1500,3)
-      })
-       
-        
+      
     });
         
     
