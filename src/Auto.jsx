@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Box from "./Box";
 import Wheel from "./Wheel"
 import { useBox, useRaycastVehicle } from "@react-three/cannon"
@@ -8,7 +8,7 @@ import { useFrame } from "@react-three/fiber";
 
 
 const width = 16;
-const height = 8;
+const height = 4;
 const front = width;
 const back = width;
 const radius = 5;
@@ -20,7 +20,7 @@ function Auto() {
         () => ({
         allowSleep: false,
         mass: 1500,
-        position: [0,10,0],
+        position: [0,6,0],
         onCollide: (e) => console.log('bonk', e.body.userData),
         args: dimensions
         }),
@@ -40,12 +40,10 @@ function Auto() {
     
     useControls(vehicleApi, chassisApi)
 
-    useFrame(() => {
-      
-    });
-        
+    // useFrame((state) => {
+    //     chassisApi.position.subscribe((position) => state.camera.x = position.x)
+    // })
     
-
   return (
     <group ref={vehicle} name="vehicle">
         <Box chassisRef={chassisBody} dimensions={dimensions} name='chassisBody' />

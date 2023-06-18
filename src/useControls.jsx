@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 
 function useControls(vehicleApi, chassisApi) {
-  const throttleForce = 1000000;
-  const brakeForce = 500;
+  const throttleForce = 500000;
+  const brakeForce = 300;
 
   const accelerateBrake = (e) => {
     console.log(typeof e.key)

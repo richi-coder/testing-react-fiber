@@ -28,22 +28,22 @@ function useWheels() {
 
       const wheelInfo1 = {
         ...wheelInfo,
-        chassisConnectionPointLocal: [-width * 0.8, -5, front],
+        chassisConnectionPointLocal: [-width * 0.8, -1, front],
         isFrontWheel: true,
       }
       const wheelInfo2 = {
         ...wheelInfo,
-        chassisConnectionPointLocal: [width * 0.8, -5, front],
+        chassisConnectionPointLocal: [width * 0.8, -1, front],
         isFrontWheel: true,
       }
       const wheelInfo3 = {
         ...wheelInfo,
-        chassisConnectionPointLocal: [-width * 0.8, -5, -back],
+        chassisConnectionPointLocal: [-width * 0.8, -1, -back],
         isFrontWheel: false,
       }
       const wheelInfo4 = {
         ...wheelInfo,
-        chassisConnectionPointLocal: [width * 0.8, -5, -back],
+        chassisConnectionPointLocal: [width * 0.8, -1, -back],
         isFrontWheel: false,
       }
 
