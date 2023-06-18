@@ -20,7 +20,7 @@ function Auto() {
         () => ({
         allowSleep: false,
         mass: 1500,
-        position: [0,6,0],
+        position: [0,10,0],
         onCollide: (e) => console.log('bonk', e.body.userData),
         args: dimensions
         }),
