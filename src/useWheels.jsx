@@ -56,7 +56,7 @@ function useWheels() {
         shapes: [
           {
             args: [radius, radius, 5, 25],
-            rotation: [Math.PI/2, 0, 0],
+            rotation: [0, 0, 0],
             type: 'Cylinder',
           }
         ],
