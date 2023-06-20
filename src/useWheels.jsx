@@ -1,11 +1,11 @@
 import { useCompoundBody } from "@react-three/cannon";
 import { useRef } from "react"
 
-const width = 16;
-const height = 8;
+const width = 1.6;
+const height = 0.4;
 const front = width;
-const back = width;
-const radius = 2.5;
+const back = width*1.2;
+const radius = 0.25;
 
 function useWheels() {
     const wheels = [useRef(null), useRef(null), useRef(null), useRef(null)];
@@ -16,11 +16,11 @@ function useWheels() {
         axleLocal: [-1, 0, 0],
         suspensionStiffness: 60,
         suspensionRestLength: 0.5,
-        frictionSlip: 1.5,
+        frictionSlip: 2.5,
         dampingRelaxation: 2.3,
         dampingCompression: 4.4,
         maxSuspensionForce: 100000,
-        rollInfluence: 0.5,
+        rollInfluence: 0.05,
         maxSuspensionTravel: 0.3,
         customSlidingRotationalSpeed: -30,  
         useCustomSlidingRotationalSpeed: true,
@@ -28,22 +28,22 @@ function useWheels() {
 
       const wheelInfo1 = {
         ...wheelInfo,
-        chassisConnectionPointLocal: [-width * 0.8, -1, front],
+        chassisConnectionPointLocal: [-width, 0.3, front*1.5],
         isFrontWheel: true,
       }
       const wheelInfo2 = {
         ...wheelInfo,
-        chassisConnectionPointLocal: [width * 0.8, -1, front],
+        chassisConnectionPointLocal: [width, 0.3, front*1.5],
         isFrontWheel: true,
       }
       const wheelInfo3 = {
         ...wheelInfo,
-        chassisConnectionPointLocal: [-width * 0.8, -1, -back],
+        chassisConnectionPointLocal: [-width, 0.3, -front],
         isFrontWheel: false,
       }
       const wheelInfo4 = {
         ...wheelInfo,
-        chassisConnectionPointLocal: [width * 0.8, -1, -back],
+        chassisConnectionPointLocal: [width, 0.3, -front],
         isFrontWheel: false,
       }
 
@@ -55,7 +55,7 @@ function useWheels() {
         material: 'wheel',
         shapes: [
           {
-            args: [radius*2, radius*2, 2.5, 25],
+            args: [radius*2, radius*2, 0.18, 25],
             rotation: [0, 0, Math.PI/2],
             type: 'Cylinder',
           }

@@ -1,19 +1,32 @@
 import { Debug, Physics } from "@react-three/cannon"
-import { OrbitControls } from "@react-three/drei"
-import { useRef } from "react"
-import Car from "./Car"
+import { Environment, OrbitControls } from "@react-three/drei"
+import { useEffect, useRef, useState } from "react"
 import Town from "./Town"
-import Box from "./Box"
 import Auto from "./Auto"
+import Sphere from "./Sphere"
 
 function App() {
+  const [fpCamera, setFpCamera] = useState(false)
+  const cameraPositioning = (e) => {
+    if (e.key === 'k') setFpCamera(!fpCamera)
+  }
+
+  useEffect(() => {
+    window.addEventListener('keydown', e => cameraPositioning(e))
+    return () => window.removeEventListener('keydown', e => cameraPositioning(e))
+  }, [fpCamera])
   
   return (
     <>
+      <Environment 
+        files={'/textures/envmap.hdr'}
+        background='only'
+      />
       <Physics gravity={[0,-9.81,0]} broadphase="SAP">
         <Debug>
           <Town />
-          <Auto />
+          <Auto fpCamera={fpCamera} />
+          {/* <Sphere /> */}
         </Debug>
       </Physics>
       <OrbitControls />

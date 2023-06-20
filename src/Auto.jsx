@@ -5,22 +5,24 @@ import { useBox, useRaycastVehicle } from "@react-three/cannon"
 import useWheels from "./useWheels";
 import useControls from "./useControls";
 import { useFrame } from "@react-three/fiber";
+import { Quaternion, Vector3 } from "three";
 
 
-const width = 16;
-const height = 4;
+const width = 1.6;
+const height = 0.4;
 const front = width;
-const back = width;
-const radius = 5;
+const back = width*1.2;
+const radius = 0.5;
 const dimensions = [width, height, front * 2]
 
-function Auto() {
+function Auto({ fpCamera }) {
     
     const [ chassisBody, chassisApi ] = useBox(
         () => ({
         allowSleep: false,
-        mass: 1500,
-        position: [0,10,0],
+        mass: 1000,
+        position: [0,2,0],
+        rotation: [0,0, 0],
         onCollide: (e) => console.log('bonk', e.body.userData),
         args: dimensions
         }),
@@ -40,9 +42,25 @@ function Auto() {
     
     useControls(vehicleApi, chassisApi)
 
-    // useFrame((state) => {
-    //     chassisApi.position.subscribe((position) => state.camera.x = position.x)
-    // })
+    console.log(chassisApi, 'chassis');
+    useFrame((state) => {
+
+      if (fpCamera) {let position = new Vector3(0,0,0);
+      position.setFromMatrixPosition(chassisBody.current.matrixWorld);
+
+      let quaternion = new Quaternion(0, 0, 0, 0);
+      quaternion.setFromRotationMatrix(chassisBody.current.matrixWorld);
+
+      let wDir = new Vector3(0,0,1);
+      wDir.applyQuaternion(quaternion);
+      wDir.normalize();
+
+      let cameraPosition = position.clone().add(wDir.clone().multiplyScalar(1).add(new Vector3(0, 2, -5)));
+      
+      wDir.add(new Vector3(0, 0, 0));
+      state.camera.position.copy(cameraPosition);
+      state.camera.lookAt(position);}
+    })
     
   return (
     <group ref={vehicle} name="vehicle">
