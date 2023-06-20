@@ -14,9 +14,9 @@ function useWheels() {
         radius: radius *2,
         directionLocal: [0, -1, 0],
         axleLocal: [-1, 0, 0],
-        suspensionStiffness: 60,
+        suspensionStiffness: 30,
         suspensionRestLength: 0.5,
-        frictionSlip: 2.5,
+        frictionSlip: 1.7,
         dampingRelaxation: 2.3,
         dampingCompression: 4.4,
         maxSuspensionForce: 100000,
@@ -28,22 +28,22 @@ function useWheels() {
 
       const wheelInfo1 = {
         ...wheelInfo,
-        chassisConnectionPointLocal: [-width, 0.3, front*1.5],
+        chassisConnectionPointLocal: [-width, 0.5, front*1.5],
         isFrontWheel: true,
       }
       const wheelInfo2 = {
         ...wheelInfo,
-        chassisConnectionPointLocal: [width, 0.3, front*1.5],
+        chassisConnectionPointLocal: [width, 0.5, front*1.5],
         isFrontWheel: true,
       }
       const wheelInfo3 = {
         ...wheelInfo,
-        chassisConnectionPointLocal: [-width, 0.3, -front],
+        chassisConnectionPointLocal: [-width, 0.5, -front],
         isFrontWheel: false,
       }
       const wheelInfo4 = {
         ...wheelInfo,
-        chassisConnectionPointLocal: [width, 0.3, -front],
+        chassisConnectionPointLocal: [width, 0.5, -front],
         isFrontWheel: false,
       }
 
@@ -51,11 +51,11 @@ function useWheels() {
 
       const propsFunc = () => ({
         collisionFilterGroup: 0,
-        mass: 1,
+        mass: 10,
         material: 'wheel',
         shapes: [
           {
-            args: [radius*2, radius*2, 0.18, 25],
+            args: [radius*2, radius*2, 0.5, 35],
             rotation: [0, 0, Math.PI/2],
             type: 'Cylinder',
           }

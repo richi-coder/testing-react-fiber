@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Box from "./Box";
 import Wheel from "./Wheel"
 import { useBox, useRaycastVehicle } from "@react-three/cannon"
@@ -16,21 +16,23 @@ const radius = 0.5;
 const dimensions = [width, height, front * 2]
 
 function Auto({ fpCamera }) {
-    
+    // chassis hook
     const [ chassisBody, chassisApi ] = useBox(
         () => ({
         allowSleep: false,
-        mass: 1000,
-        position: [0,2,0],
-        rotation: [0,0, 0],
+        mass: 1500,
+        position: [0,1,0],
+        rotation: [0,0,0],
         onCollide: (e) => console.log('bonk', e.body.userData),
         args: dimensions
         }),
         useRef(null),
         );
 
+    // custom wheels hook
     const [ wheels, wheelInfos ] = useWheels()
 
+    // vehicle hook
     const [ vehicle, vehicleApi ] = useRaycastVehicle(
         () => ({
         chassisBody,
@@ -40,27 +42,43 @@ function Auto({ fpCamera }) {
         useRef(null),
         );
     
+    // custom controls hook
     useControls(vehicleApi, chassisApi)
 
-    console.log(chassisApi, 'chassis');
+    // render loop
     useFrame((state) => {
 
-      if (fpCamera) {let position = new Vector3(0,0,0);
-      position.setFromMatrixPosition(chassisBody.current.matrixWorld);
+      if (fpCamera) {
+        let position = new Vector3(0,0,0);
+        position.setFromMatrixPosition(chassisBody.current.matrixWorld);
 
-      let quaternion = new Quaternion(0, 0, 0, 0);
-      quaternion.setFromRotationMatrix(chassisBody.current.matrixWorld);
+        let quaternion = new Quaternion(0, 0, 0, 0);
+        quaternion.setFromRotationMatrix(chassisBody.current.matrixWorld);
 
-      let wDir = new Vector3(0,0,1);
-      wDir.applyQuaternion(quaternion);
-      wDir.normalize();
+        let wDir = new Vector3(0,0,1);
+        wDir.applyQuaternion(quaternion);
+        wDir.normalize();
 
-      let cameraPosition = position.clone().add(wDir.clone().multiplyScalar(1).add(new Vector3(0, 2, -5)));
-      
-      wDir.add(new Vector3(0, 0, 0));
-      state.camera.position.copy(cameraPosition);
-      state.camera.lookAt(position);}
+        let cameraPosition = position.clone().add(wDir.clone().multiplyScalar(1).add(new Vector3(0, 2, -5)));
+        
+        wDir.add(new Vector3(0, 0, 0));
+        state.camera.position.copy(cameraPosition);
+        state.camera.lookAt(position);
+      }
     })
+
+    useEffect(() => {
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'r') {
+          chassisApi.position.set(0,1,0)
+          chassisApi.velocity.set(0,0,0)
+          chassisApi.angularVelocity.set(0,0,0)
+          chassisApi.rotation.set(0,0,0)
+          console.log(chassisApi);
+        }
+      })
+    }, [])
+    
     
   return (
     <group ref={vehicle} name="vehicle">

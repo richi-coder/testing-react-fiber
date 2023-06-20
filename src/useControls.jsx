@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 
 function useControls(vehicleApi, chassisApi) {
   const throttleForce = -5000;
-  const brakeForce = 30;
+  const brakeForce = 300;
 
   const accelerateBrake = (e) => {
     console.log(typeof e.key)
@@ -16,27 +16,10 @@ function useControls(vehicleApi, chassisApi) {
       return
     }
     if (e.key == 's') {
-     
-      // Checking vehicle speed
-      let totalVel = 0;
-      chassisApi.velocity.subscribe((vel) => {
-        totalVel = vel.reduce((acum, value) => acum + value, 0)
-      })
-        
-        // if (Math.abs(totalVel) > 1) {
-          vehicleApi.setBrake(brakeForce, 0)
-          vehicleApi.setBrake(brakeForce, 1)
-          vehicleApi.setBrake(brakeForce*0.7, 2)
-          vehicleApi.setBrake(brakeForce*0.7, 3)
-        // } else {
-        //   vehicleApi.setBrake(0, 0)
-        //   vehicleApi.setBrake(0, 1)
-        //   vehicleApi.setBrake(0, 2)
-        //   vehicleApi.setBrake(0, 3)
-        //   vehicleApi.applyEngineForce(-throttleForce/3, 2)
-        //   vehicleApi.applyEngineForce(-throttleForce/3, 3)
-        // }
-      
+      vehicleApi.setBrake(brakeForce, 0)
+      vehicleApi.setBrake(brakeForce, 1)
+      vehicleApi.setBrake(brakeForce*0.7, 2)
+      vehicleApi.setBrake(brakeForce*0.7, 3)
       return
     }
     if (e.key === 'a') {
