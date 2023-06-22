@@ -47,14 +47,14 @@ function Auto({ fpCamera }) {
     // custom controls hook
     useControls(vehicleApi, chassisApi)
 
-    // Updating dashboard
-    chassisApi.velocity.subscribe((vel) => {
-      callVehicle.updateVelocity(Math.floor(vel[2]))
-      return
-    })
+    
     // render loop
     useFrame((state) => {
-      
+      // Updating dashboard
+      chassisApi.velocity.subscribe((vel) => {
+        callVehicle.updateVelocity(Math.floor(vel[2]))
+        return
+      })
       if (fpCamera) {
         let position = new Vector3(0,0,0);
         position.setFromMatrixPosition(chassisBody.current.matrixWorld);
