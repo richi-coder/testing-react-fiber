@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Box from "./Box";
 import Wheel from "./Wheel"
 import { useBox, useRaycastVehicle } from "@react-three/cannon"
@@ -6,6 +6,7 @@ import useWheels from "./useWheels";
 import useControls from "./useControls";
 import { useFrame } from "@react-three/fiber";
 import { Quaternion, Vector3 } from "three";
+import { useVehicle } from "../Context/GameContext";
 
 
 const width = 1.6;
@@ -16,6 +17,7 @@ const radius = 0.5;
 const dimensions = [width, height, front * 2]
 
 function Auto({ fpCamera }) {
+    const callVehicle = useVehicle()
     // chassis hook
     const [ chassisBody, chassisApi ] = useBox(
         () => ({
@@ -45,7 +47,11 @@ function Auto({ fpCamera }) {
     // custom controls hook
     useControls(vehicleApi, chassisApi)
 
-    console.log(chassisApi);
+    // Updating dashboard
+    chassisApi.velocity.subscribe((vel) => {
+      callVehicle.updateVelocity(Math.floor(vel[2]))
+      return
+    })
     // render loop
     useFrame((state) => {
       

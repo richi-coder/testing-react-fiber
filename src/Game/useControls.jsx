@@ -5,24 +5,14 @@ let maxSteerAngle = Math.PI/6;
 
 function useControls(vehicleApi, chassisApi) {
   
-  const throttleForce = -10000;
-  const brakeForce = 300;
+  const throttleForce = -15000;
+  const brakeForce = 500;
   
 
   const vehicleControls = (e) => {
     let time = Date.now()
     let velo = 0
-    chassisApi.position.subscribe((position) => {
-        
-      // setTimeout(() => {
-        if (position[2] > 2 ) {
-          velo = Math.floor(position[2])
-          console.log(velo);
-          // console.log(velocity)
-        } else return
-      // }, 2000);
-      
-    })
+    
     if (e.key == 'w') {
       vehicleApi.applyEngineForce(throttleForce, 2)
       vehicleApi.applyEngineForce(throttleForce, 3)

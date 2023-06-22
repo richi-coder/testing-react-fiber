@@ -1,9 +1,8 @@
 import { Debug, Physics } from "@react-three/cannon"
 import { Environment, OrbitControls } from "@react-three/drei"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import Town from "./Town"
 import Auto from "./Auto"
-import Sphere from "./Sphere"
 
 function App() {
   const [fpCamera, setFpCamera] = useState(false)

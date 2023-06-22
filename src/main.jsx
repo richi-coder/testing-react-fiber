@@ -1,9 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+import App from './Game/App.jsx'
 import './index.css'
 import { Canvas } from '@react-three/fiber'
 import { getGPUTier } from 'detect-gpu';
+import GameContext, { ContextGame } from './Context/GameContext.jsx'
+import Dashboard from './GUI/Dashboard.jsx'
 
 (async () => {
   const gpuTier = await getGPUTier();
@@ -19,9 +21,12 @@ import { getGPUTier } from 'detect-gpu';
 })();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
+  <GameContext>
+    <Dashboard />
     <Canvas camera={{ position: [-4,2,-3] }} frameloop="demand">
         <App />
-        <ambientLight intensity={0.5}/>
+        <ambientLight intensity={0}/>
         <directionalLight color='red' position={[0,0,5]} />
     </Canvas>
+  </GameContext>
 )

@@ -4,8 +4,8 @@ import { useLoader } from "@react-three/fiber"
 import { useRef } from "react"
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader"
 
-let width = 20
-let length = 500
+let width = 50
+let length = 250
 
 function Town() {
     // const gltfStreet = useLoader(GLTFLoader, 'street/scene.gltf')
