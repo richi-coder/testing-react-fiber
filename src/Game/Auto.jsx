@@ -96,10 +96,10 @@ function Auto({ fpCamera }) {
   return (
     <group ref={vehicle} name="vehicle">
         <Box chassisRef={chassisBody} dimensions={dimensions} name='chassisBody' />
-        <Wheel wheelRef={wheels[0]} radius={radius} />
-        <Wheel wheelRef={wheels[1]} radius={radius} />
-        <Wheel wheelRef={wheels[2]} radius={radius} />
-        <Wheel wheelRef={wheels[3]} radius={radius} />
+        <Wheel wheelRef={wheels[0]} radius={radius} wheelNum={0} />
+        <Wheel wheelRef={wheels[1]} radius={radius} wheelNum={1} />
+        <Wheel wheelRef={wheels[2]} radius={radius} wheelNum={2} />
+        <Wheel wheelRef={wheels[3]} radius={radius} wheelNum={3} />
     </group>
   )
 }

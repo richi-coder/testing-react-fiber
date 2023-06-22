@@ -60,7 +60,7 @@ function useControls(vehicleApi, chassisApi) {
   }
 
   const deltaSteer = (steerAngle) => {
-    steerAngle = maxSteerAngle
+    steerAngle += maxSteerAngle
     steerAngle = steerAngle <= maxSteerAngle ? steerAngle : maxSteerAngle
     return steerAngle
   }
