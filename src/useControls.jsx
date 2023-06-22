@@ -1,18 +1,32 @@
 import { useEffect, useState } from "react"
 
-function useControls(vehicleApi, chassisApi) {
-  const throttleForce = -5000;
-  const brakeForce = 300;
+let steerAngle = 0;
+let maxSteerAngle = Math.PI/6;
 
-  const accelerateBrake = (e) => {
-    console.log(typeof e.key)
+function useControls(vehicleApi, chassisApi) {
+  
+  const throttleForce = -10000;
+  const brakeForce = 300;
+  
+
+  const vehicleControls = (e) => {
+    let time = Date.now()
+    let velo = 0
+    chassisApi.position.subscribe((position) => {
+        
+      // setTimeout(() => {
+        if (position[2] > 2 ) {
+          velo = Math.floor(position[2])
+          console.log(velo);
+          // console.log(velocity)
+        } else return
+      // }, 2000);
+      
+    })
     if (e.key == 'w') {
-      vehicleApi.setBrake(0, 0)
-      vehicleApi.setBrake(0, 1)
-      vehicleApi.setBrake(0, 2)
-      vehicleApi.setBrake(0, 3)
       vehicleApi.applyEngineForce(throttleForce, 2)
       vehicleApi.applyEngineForce(throttleForce, 3)
+      
       return
     }
     if (e.key == 's') {
@@ -22,48 +36,56 @@ function useControls(vehicleApi, chassisApi) {
       vehicleApi.setBrake(brakeForce*0.7, 3)
       return
     }
-    if (e.key === 'a') {
-      vehicleApi.setSteeringValue(Math.PI/6,0)
-      vehicleApi.setSteeringValue(Math.PI/6,1)
-      return
-    }
-    if (e.key === 'd') {
-      vehicleApi.setSteeringValue(-Math.PI/6,0)
-      vehicleApi.setSteeringValue(-Math.PI/6,1)
-      return
-    }
-    return
+        
+        if (e.key == 'a') {
+          steerAngle = deltaSteer(steerAngle)
+          vehicleApi.setSteeringValue(steerAngle,0)
+          vehicleApi.setSteeringValue(steerAngle,1)
+          return
+        }
+        if (e.key == 'd') {
+          steerAngle = deltaSteer(steerAngle)
+          vehicleApi.setSteeringValue(-steerAngle,0)
+          vehicleApi.setSteeringValue(-steerAngle,1)
+          return
+        }
+  }
+
+  const deltaSteer = (steerAngle) => {
+    steerAngle = maxSteerAngle
+    steerAngle = steerAngle <= maxSteerAngle ? steerAngle : maxSteerAngle
+    return steerAngle
   }
 
   const freeControls = (e) => {
     if (e.key === 'w') {
-    vehicleApi.applyEngineForce(0,0)
-    vehicleApi.applyEngineForce(0,1)
-    vehicleApi.applyEngineForce(0,2)
-    vehicleApi.applyEngineForce(0,3)
-    return
+      vehicleApi.applyEngineForce(0,0)
+      vehicleApi.applyEngineForce(0,1)
+      vehicleApi.applyEngineForce(0,2)
+      vehicleApi.applyEngineForce(0,3)
+      return
     }
     if (e.key === 's') {
-    vehicleApi.setBrake(0,0)
-    vehicleApi.setBrake(0,1)
-    vehicleApi.setBrake(0,2)
-    vehicleApi.setBrake(0,3)
-    return
+      vehicleApi.setBrake(0,0)
+      vehicleApi.setBrake(0,1)
+      vehicleApi.setBrake(0,2)
+      vehicleApi.setBrake(0,3)
+      return
     }
     if (e.key === 'a' || e.key === 'd') {
-    vehicleApi.setSteeringValue(0,0)
-    vehicleApi.setSteeringValue(0,1)
-    vehicleApi.setSteeringValue(0,2)
-    vehicleApi.setSteeringValue(0,3)
-    return
+      steerAngle = 0;
+      vehicleApi.setSteeringValue(0,0)
+      vehicleApi.setSteeringValue(0,1)
+      return
     }
   }
 
   useEffect(() => {
-    window.addEventListener('keydown', (e) => accelerateBrake(e))
-    window.addEventListener('keyup', (e) => freeControls(e))
+    window.addEventListener('keydown', vehicleControls)
+    window.addEventListener('keyup', freeControls)
+    
     return () => {
-      window.removeEventListener('keydown', (e) => accelerateBrake(e))
+      window.removeEventListener('keydown', vehicleControls)
       window.removeEventListener('keyup', freeControls)
     }
     

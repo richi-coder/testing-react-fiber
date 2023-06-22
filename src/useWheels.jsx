@@ -13,14 +13,14 @@ function useWheels() {
     const wheelInfo = {
         radius: radius *2,
         directionLocal: [0, -1, 0],
-        axleLocal: [-1, 0, 0],
+        axleLocal: [1, 0, 0],
         suspensionStiffness: 30,
-        suspensionRestLength: 0.5,
+        suspensionRestLength: 0.4,
         frictionSlip: 1.7,
         dampingRelaxation: 2.3,
         dampingCompression: 4.4,
         maxSuspensionForce: 100000,
-        rollInfluence: 0.05,
+        rollInfluence: 0.1,
         maxSuspensionTravel: 0.3,
         customSlidingRotationalSpeed: -30,  
         useCustomSlidingRotationalSpeed: true,
@@ -55,7 +55,7 @@ function useWheels() {
         material: 'wheel',
         shapes: [
           {
-            args: [radius*2, radius*2, 0.5, 35],
+            args: [radius*2, radius*2, 0.5, 25],
             rotation: [0, 0, Math.PI/2],
             type: 'Cylinder',
           }

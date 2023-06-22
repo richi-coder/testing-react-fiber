@@ -45,9 +45,10 @@ function Auto({ fpCamera }) {
     // custom controls hook
     useControls(vehicleApi, chassisApi)
 
+    console.log(chassisApi);
     // render loop
     useFrame((state) => {
-
+      
       if (fpCamera) {
         let position = new Vector3(0,0,0);
         position.setFromMatrixPosition(chassisBody.current.matrixWorld);
@@ -67,17 +68,23 @@ function Auto({ fpCamera }) {
       }
     })
 
+
+    
     useEffect(() => {
-      window.addEventListener('keydown', (e) => {
-        if (e.key === 'r') {
-          chassisApi.position.set(0,1,0)
-          chassisApi.velocity.set(0,0,0)
-          chassisApi.angularVelocity.set(0,0,0)
-          chassisApi.rotation.set(0,0,0)
-          console.log(chassisApi);
-        }
-      })
+      window.addEventListener('keydown', (e) => resetGame(e))
+      return () => window.addEventListener('keydown', (e) => resetGame(e))
+      
     }, [])
+
+    const resetGame = (e) => {
+      if (e.key === 'r') {
+        chassisApi.position.set(0,1,0)
+        chassisApi.velocity.set(0,0,0)
+        chassisApi.angularVelocity.set(0,0,0)
+        chassisApi.rotation.set(0,0,0)
+        console.log(chassisApi);
+      }
+    }
     
     
   return (
