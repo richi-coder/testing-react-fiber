@@ -3,6 +3,7 @@ import { useVehicle } from "../Context/GameContext";
 
 let steerAngle = 0;
 let maxSteerAngle = Math.PI/6;
+const ackerman = 0.1;
 
 function useControls(vehicleApi, chassisApi) {
   const callVehicle = useVehicle();
@@ -47,14 +48,14 @@ function useControls(vehicleApi, chassisApi) {
     }
     if (e.key == 'a') {
       steerAngle = deltaSteer(steerAngle)
-      vehicleApi.setSteeringValue(steerAngle,0)
+      vehicleApi.setSteeringValue(steerAngle+ackerman,0)
       vehicleApi.setSteeringValue(steerAngle,1)
       return
     }
     if (e.key == 'd') {
       steerAngle = deltaSteer(steerAngle)
       vehicleApi.setSteeringValue(-steerAngle,0)
-      vehicleApi.setSteeringValue(-steerAngle,1)
+      vehicleApi.setSteeringValue(-steerAngle-ackerman,1)
       return
     }
   }

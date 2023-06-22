@@ -6,7 +6,7 @@ const height = 0.4;
 const front = width;
 const back = width*1.2;
 const radius = 0.25;
-export const ackerman = 0.05;
+
 
 function useWheels() {
     const wheels = [useRef(null), useRef(null), useRef(null), useRef(null)];
@@ -14,7 +14,7 @@ function useWheels() {
     const wheelInfo = {
         radius: radius *2,
         directionLocal: [0, -1, 0],
-        
+        axleLocal: [-1, 0, 0],
         suspensionStiffness: 30,
         suspensionRestLength: 0.4,
         frictionSlip: 1.7,
@@ -31,25 +31,21 @@ function useWheels() {
         ...wheelInfo,
         chassisConnectionPointLocal: [-width, 0.5, front*1.5],
         isFrontWheel: true,
-        axleLocal: [-Math.cos(ackerman), 0, Math.sin(ackerman)],
       }
       const wheelInfo2 = {
         ...wheelInfo,
         chassisConnectionPointLocal: [width, 0.5, front*1.5],
         isFrontWheel: true,
-        axleLocal: [Math.cos(ackerman), 0, Math.sin(ackerman)],
       }
       const wheelInfo3 = {
         ...wheelInfo,
         chassisConnectionPointLocal: [-width, 0.5, -front],
         isFrontWheel: false,
-        axleLocal: [-1, 0, 0],
       }
       const wheelInfo4 = {
         ...wheelInfo,
         chassisConnectionPointLocal: [width, 0.5, -front],
         isFrontWheel: false,
-        axleLocal: [-1, 0, 0],
       }
 
       const wheelInfos = [wheelInfo1, wheelInfo2, wheelInfo3, wheelInfo4]
@@ -61,7 +57,7 @@ function useWheels() {
         shapes: [
           {
             args: [radius*2, radius*2, 0.5, 25],
-            rotation: [0, wheelNum == 0 ? ackerman : wheelNum == 1 ? -ackerman : 0, Math.PI/2],
+            rotation: [0, 0, Math.PI/2],
             type: 'Cylinder',
           }
         ],
