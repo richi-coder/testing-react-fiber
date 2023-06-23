@@ -4,7 +4,7 @@ import App from './Game/App.jsx'
 import './index.css'
 import { Canvas } from '@react-three/fiber'
 import { getGPUTier } from 'detect-gpu';
-import GameContext, { ContextGame } from './Context/GameContext.jsx'
+import GameContext from './Context/GameContext.jsx'
 import Dashboard from './GUI/Dashboard.jsx'
 
 (async () => {

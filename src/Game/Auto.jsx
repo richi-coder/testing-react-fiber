@@ -59,24 +59,24 @@ function Auto({ fpCamera }) {
       // Checking sliding
       // vehicleApi.sliding.subscribe(slide => console.log(slide))
 
-      if (fpCamera) {
+      if (!fpCamera) return
         let position = new Vector3(0,0,0);
         position.setFromMatrixPosition(chassisBody.current.matrixWorld);
 
         let quaternion = new Quaternion(0, 0, 0, 0);
         quaternion.setFromRotationMatrix(chassisBody.current.matrixWorld);
 
-        let wDir = new Vector3(0,0,1);
+        let wDir = new Vector3(0,0,-1);
         wDir.applyQuaternion(quaternion);
         wDir.normalize();
 
         let cameraPosition = position.clone().add(wDir.clone().multiplyScalar(-1).add(new Vector3(0, 2, -4.5)));
         
-        wDir.add(new Vector3(0, 0, 0));
+        // wDir.add(new Vector3(0, 0, 0));
         state.camera.position.copy(cameraPosition);
         state.camera.lookAt(position);
       
-      }
+      
     })
 
 

@@ -1,6 +1,6 @@
 import { Debug, Physics } from "@react-three/cannon"
-import { Environment, OrbitControls, Stats } from "@react-three/drei"
-import { useEffect, useState } from "react"
+import { Environment, OrbitControls, PerspectiveCamera, Stats } from "@react-three/drei"
+import { Suspense, useEffect, useState } from "react"
 import Town from "./Town"
 import Auto from "./Auto"
 
@@ -16,21 +16,21 @@ function App() {
   }, [fpCamera])
   
   return (
-    <>
+    <Suspense fallback={null}>
       <Environment 
         files={'/textures/envmap.hdr'}
         background='only'
       />
-      <Physics gravity={[0,-9.81,0]} broadphase="SAP" defaultContactMaterial={{ contactEquationStiffness: 10 }} >
-        {/* <Debug> */}
+      <Physics gravity={[0,-9.81,0]}  defaultContactMaterial={{ contactEquationStiffness: 10 }} >
+        <Debug>
           <Town />
           <Auto fpCamera={fpCamera} />
           {/* <Sphere /> */}
-        {/* </Debug> */}
+        </Debug>
       </Physics>
       <Stats />
       <OrbitControls />
-    </>
+    </Suspense>
   )
 }
 
