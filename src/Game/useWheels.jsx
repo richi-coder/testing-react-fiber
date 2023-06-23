@@ -1,7 +1,7 @@
 import { useCompoundBody, useContactMaterial } from "@react-three/cannon";
 import { useRef } from "react"
 
-const width = 1.6;
+const width = 1.3;
 const height = 0.4;
 const front = width;
 const back = width*1.2;
@@ -22,8 +22,8 @@ function useWheels() {
         dampingRelaxation: 2.3,
         dampingCompression: 4.4,
         maxSuspensionForce: 100000,
-        rollInfluence: 0.1,
-        maxSuspensionTravel: 0.3,
+        rollInfluence: 0.01,
+        maxSuspensionTravel: 0.4,
         customSlidingRotationalSpeed: -30,  
         useCustomSlidingRotationalSpeed: true,
       }
