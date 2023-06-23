@@ -21,7 +21,7 @@ function App() {
         files={'/textures/envmap.hdr'}
         background='only'
       />
-      <Physics gravity={[0,-9.81,0]} broadphase="SAP">
+      <Physics gravity={[0,-9.81,0]} broadphase="SAP" defaultContactMaterial={{ contactEquationStiffness: 10 }} >
         <Debug>
           <Town />
           <Auto fpCamera={fpCamera} />
