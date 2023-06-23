@@ -1,5 +1,5 @@
 import { Debug, Physics } from "@react-three/cannon"
-import { Environment, OrbitControls } from "@react-three/drei"
+import { Environment, OrbitControls, Stats } from "@react-three/drei"
 import { useEffect, useState } from "react"
 import Town from "./Town"
 import Auto from "./Auto"
@@ -28,6 +28,7 @@ function App() {
           {/* <Sphere /> */}
         </Debug>
       </Physics>
+      <Stats />
       <OrbitControls />
     </>
   )
