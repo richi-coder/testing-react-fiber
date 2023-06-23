@@ -62,7 +62,7 @@ function useWheels() {
             type: 'Cylinder',
           }
         ],
-        type: 'Dynamic',
+        type: 'Kinematic',
       })
 
       useCompoundBody(propsFunc, wheels[0])
