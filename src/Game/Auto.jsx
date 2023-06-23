@@ -56,6 +56,9 @@ function Auto({ fpCamera }) {
         callVehicle.updateVelocity(Math.floor(vel[2]))
         return
       })
+      // Checking sliding
+      vehicleApi.sliding.subscribe(slide => console.log(slide))
+
       if (fpCamera) {
         let position = new Vector3(0,0,0);
         position.setFromMatrixPosition(chassisBody.current.matrixWorld);

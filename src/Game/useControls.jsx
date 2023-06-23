@@ -12,8 +12,6 @@ function useControls(vehicleApi, chassisApi) {
   const throttleForce = -15000;
   const brakeForce = 5000;
   
-  console.log(vehicleApi, 'car');
-
   const vehicleControls = (e) => {
     
     chassisApi.velocity.subscribe(vel => {
