@@ -12,6 +12,7 @@ function useControls(vehicleApi, chassisApi) {
   const throttleForce = -15000;
   const brakeForce = 5000;
   
+  console.log(vehicleApi, 'car');
 
   const vehicleControls = (e) => {
     
@@ -19,6 +20,7 @@ function useControls(vehicleApi, chassisApi) {
       carVelocity.current = vel[2]
       return
     })
+
     
     if (e.key == 'w') {
       vehicleApi.applyEngineForce(throttleForce, 2)

@@ -52,6 +52,7 @@ function Auto({ fpCamera }) {
     useFrame((state) => {
       // Updating dashboard
       chassisApi.velocity.subscribe((vel) => {
+        console.log(chassisApi);
         callVehicle.updateVelocity(Math.floor(vel[2]))
         return
       })
