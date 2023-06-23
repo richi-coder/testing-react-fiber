@@ -1,4 +1,4 @@
-import { useCompoundBody } from "@react-three/cannon";
+import { useCompoundBody, useContactMaterial } from "@react-three/cannon";
 import { useRef } from "react"
 
 const width = 1.6;
@@ -10,7 +10,8 @@ const radius = 0.25;
 
 function useWheels() {
     const wheels = [useRef(null), useRef(null), useRef(null), useRef(null)];
-
+    const contact = useContactMaterial();
+    console.log(contact);
     const wheelInfo = {
         radius: radius *2,
         directionLocal: [0, -1, 0],
@@ -50,7 +51,7 @@ function useWheels() {
 
       const wheelInfos = [wheelInfo1, wheelInfo2, wheelInfo3, wheelInfo4]
 
-      const propsFunc = (wheelNum) => ({
+      const propsFunc = () => ({
         collisionFilterGroup: 0,
         mass: 10,
         material: 'wheel',
@@ -61,7 +62,7 @@ function useWheels() {
             type: 'Cylinder',
           }
         ],
-        type: 'Kinematic',
+        type: 'Dynamic',
       })
 
       useCompoundBody(propsFunc, wheels[0])
