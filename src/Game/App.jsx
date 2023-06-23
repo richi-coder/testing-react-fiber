@@ -22,11 +22,11 @@ function App() {
         background='only'
       />
       <Physics gravity={[0,-9.81,0]} broadphase="SAP" defaultContactMaterial={{ contactEquationStiffness: 10 }} >
-        <Debug>
+        {/* <Debug> */}
           <Town />
           <Auto fpCamera={fpCamera} />
           {/* <Sphere /> */}
-        </Debug>
+        {/* </Debug> */}
       </Physics>
       <Stats />
       <OrbitControls />
