@@ -64,10 +64,10 @@ function useWheels() {
         type: 'Kinematic',
       })
 
-      useCompoundBody(() => propsFunc(0), wheels[0])
-      useCompoundBody(() => propsFunc(1), wheels[1])
-      useCompoundBody(() => propsFunc(2), wheels[2])
-      useCompoundBody(() => propsFunc(3), wheels[3])
+      useCompoundBody(propsFunc, wheels[0])
+      useCompoundBody(propsFunc, wheels[1])
+      useCompoundBody(propsFunc, wheels[2])
+      useCompoundBody(propsFunc, wheels[3])
 
   return [wheels, wheelInfos]
 }
