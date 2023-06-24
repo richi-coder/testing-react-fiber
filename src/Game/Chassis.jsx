@@ -1,4 +1,4 @@
-function Box({ chassisRef, dimensions }) {
+function Chassis({ chassisRef, dimensions }) {
     
   return (
     <group ref={chassisRef}>
@@ -10,4 +10,4 @@ function Box({ chassisRef, dimensions }) {
   )
 }
 
-export default Box
+export default Chassis

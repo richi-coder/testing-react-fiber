@@ -11,7 +11,7 @@ const radius = 0.25;
 function useWheels() {
     const wheels = [useRef(null), useRef(null), useRef(null), useRef(null)];
     const contact = useContactMaterial();
-    console.log(contact);
+    
     const wheelInfo = {
         radius: radius *2,
         directionLocal: [0, -1, 0],

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import Box from "./Box";
+import Chassis from "./Chassis";
 import Wheel from "./Wheel"
 import { useBox, useRaycastVehicle } from "@react-three/cannon"
 import useWheels from "./useWheels";
@@ -58,21 +58,27 @@ function Auto({ fpCamera }) {
       })
       // Checking sliding
       // vehicleApi.sliding.subscribe(slide => console.log(slide))
+      if (!fpCamera) {
+        let position = new Vector3(0,0,0);
+        position.setFromMatrixPosition(chassisBody.current.matrixWorld);
+        state.camera.lookAt(position);
+        
+        return
+      }
 
-      if (!fpCamera) return
         let position = new Vector3(0,0,0);
         position.setFromMatrixPosition(chassisBody.current.matrixWorld);
 
         let quaternion = new Quaternion(0, 0, 0, 0);
         quaternion.setFromRotationMatrix(chassisBody.current.matrixWorld);
 
-        let wDir = new Vector3(0,0,-1);
+        let wDir = new Vector3(0,0,1);
         wDir.applyQuaternion(quaternion);
         wDir.normalize();
 
-        let cameraPosition = position.clone().add(wDir.clone().multiplyScalar(-1).add(new Vector3(0, 2, -4.5)));
+        let cameraPosition = position.clone().add(wDir.clone().multiplyScalar(1).add(new Vector3(0, 2, -4.5)));
         
-        // wDir.add(new Vector3(0, 0, 0));
+        wDir.add(new Vector3(0, 0.5, 0));
         state.camera.position.copy(cameraPosition);
         state.camera.lookAt(position);
       
@@ -100,7 +106,7 @@ function Auto({ fpCamera }) {
     
   return (
     <group ref={vehicle} name="vehicle">
-        <Box chassisRef={chassisBody} dimensions={dimensions} name='chassisBody' />
+        <Chassis chassisRef={chassisBody} dimensions={dimensions} name='chassisBody' />
         <Wheel wheelRef={wheels[0]} radius={radius} wheelNum={0} />
         <Wheel wheelRef={wheels[1]} radius={radius} wheelNum={1} />
         <Wheel wheelRef={wheels[2]} radius={radius} wheelNum={2} />
