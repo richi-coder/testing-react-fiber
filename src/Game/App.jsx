@@ -8,15 +8,17 @@ function App() {
   const [fpCamera, setFpCamera] = useState(false)
   const [cameraPosition, setCameraPosition] = useState([-6, 13.9, 6.21]);
 
-  const cameraPositioning = (e) => {
-    if (e.key === 'k') {
-      setFpCamera(!fpCamera)
-      if(!fpCamera) setCameraPosition([-6, 13.9, 6.21 + Math.random() * 0.01])
-    }
-    return
-  }
+  
 
   useEffect(() => {
+    const cameraPositioning = (e) => {
+      if (e.key === 'k') {
+        setFpCamera(!fpCamera)
+        if(!fpCamera) setCameraPosition([-6, 13.9, 6.21 + Math.random() * 0.01])
+      }
+      return
+    }
+    
     window.addEventListener('keydown', e => cameraPositioning(e))
     return () => window.removeEventListener('keydown', e => cameraPositioning(e))
   }, [fpCamera])
