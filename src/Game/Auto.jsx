@@ -25,7 +25,7 @@ function Auto({ fpCamera }) {
         mass: 1500,
         position: [0,1,0],
         rotation: [0,0,0],
-        onCollide: (e) => console.log('bonk', e.body.userData),
+        // onCollide: (e) => console.log('bonk', e.body.userData),
         args: dimensions
         }),
         useRef(null),
@@ -39,7 +39,10 @@ function Auto({ fpCamera }) {
         () => ({
         chassisBody,
         wheelInfos,
-        wheels
+        wheels,
+        indexForwardAxis: -1,
+        indexRightAxis: 0,
+        indexUpAxis: 0
         }),
         useRef(null),
         );
@@ -59,10 +62,9 @@ function Auto({ fpCamera }) {
       // Checking sliding
       // vehicleApi.sliding.subscribe(slide => console.log(slide))
       if (!fpCamera) {
-        let position = new Vector3(0,0,0);
-        position.setFromMatrixPosition(chassisBody.current.matrixWorld);
-        state.camera.lookAt(position);
-        
+        // let position = new Vector3(0,0,0);
+        // position.setFromMatrixPosition(chassisBody.current.matrixWorld);
+        // state.camera.lookAt(position);
         return
       }
 

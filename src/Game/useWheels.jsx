@@ -59,7 +59,7 @@ function useWheels() {
           {
             args: [radius*2, radius*2, 0.5, 25],
             rotation: [0, 0, Math.PI/2],
-            type: 'Cylinder',
+            type: 'Sphere',
           }
         ],
         type: 'Kinematic',
