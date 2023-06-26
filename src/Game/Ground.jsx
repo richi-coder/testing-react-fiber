@@ -13,7 +13,7 @@ function Ground() {
     // <primitive ref={ref} object={gltfStreet.scene}  scale={10} />
     <mesh ref={planeRef}>
       <planeGeometry args={[width, length]} />
-      <meshBasicMaterial color='gray' />
+      <meshBasicMaterial map={texture} />
     </mesh>
   )
 }

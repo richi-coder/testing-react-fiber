@@ -22,7 +22,7 @@ import Dashboard from './GUI/Dashboard.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <GameContext>
-    {/* <Dashboard /> */}
+    <Dashboard />
     <Canvas frameloop="demand">
         <App />
         <ambientLight intensity={0.5}/>

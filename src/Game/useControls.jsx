@@ -99,7 +99,7 @@ function useControls(vehicleApi, chassisApi) {
     }
     
   }, [])
-
+  return
 }
 
 export default useControls

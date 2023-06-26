@@ -78,7 +78,7 @@ function Auto({ fpCamera }) {
         wDir.applyQuaternion(quaternion);
         wDir.normalize();
 
-        let cameraPosition = position.clone().add(wDir.clone().multiplyScalar(1).add(new Vector3(0, 2, -7.5)));
+        let cameraPosition = position.clone().add(wDir.clone().multiplyScalar(1).add(new Vector3(0, 3, -7.5)));
         
         wDir.add(new Vector3(0, 0.5, 0));
         state.camera.position.copy(cameraPosition);
