@@ -22,7 +22,7 @@ function Auto({ fpCamera }) {
     const [ chassisBody, chassisApi ] = useBox(
         () => ({
         allowSleep: false,
-        mass: 1500,
+        mass: 1000,
         position: [0,1,0],
         rotation: [0,0,0],
         // onCollide: (e) => console.log('bonk', e.body.userData),
@@ -40,9 +40,9 @@ function Auto({ fpCamera }) {
         chassisBody,
         wheelInfos,
         wheels,
-        indexForwardAxis: -1,
-        indexRightAxis: 0,
-        indexUpAxis: 0
+        // indexForwardAxis: -1,
+        // indexRightAxis: 0,
+        // indexUpAxis: 0
         }),
         useRef(null),
         );
@@ -78,7 +78,7 @@ function Auto({ fpCamera }) {
         wDir.applyQuaternion(quaternion);
         wDir.normalize();
 
-        let cameraPosition = position.clone().add(wDir.clone().multiplyScalar(1).add(new Vector3(0, 2, -4.5)));
+        let cameraPosition = position.clone().add(wDir.clone().multiplyScalar(1).add(new Vector3(0, 2, -7.5)));
         
         wDir.add(new Vector3(0, 0.5, 0));
         state.camera.position.copy(cameraPosition);

@@ -23,10 +23,10 @@ import Dashboard from './GUI/Dashboard.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <GameContext>
     {/* <Dashboard /> */}
-    <Canvas frameloop="always">
+    <Canvas frameloop="demand">
         <App />
-        {/* <ambientLight intensity={0}/>
-        <directionalLight color='red' position={[0,0,5]} /> */}
+        <ambientLight intensity={0.5}/>
+        <directionalLight color='white' position={[0,0,5]} />
     </Canvas>
   </GameContext>
 )

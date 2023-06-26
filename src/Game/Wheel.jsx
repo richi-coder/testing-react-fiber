@@ -4,7 +4,7 @@ function Wheel({ wheelRef, radius, wheelNum }) {
     <group ref={wheelRef}>
         <mesh rotation={[0, 0, Math.PI/2]}>
             <cylinderGeometry args={[radius, radius, 0.5, 35]} />
-            <meshBasicMaterial transparent={true} color='blue' />
+            <meshBasicMaterial transparent={true} color='blue' opacity={0} />
         </mesh>
     </group>
   );

@@ -6,7 +6,7 @@ import Auto from "./Auto"
 
 function App() {
   const [fpCamera, setFpCamera] = useState(false)
-  const [cameraPosition, setCameraPosition] = useState([-6, 13.9, 6.21]);
+  const [cameraPosition, setCameraPosition] = useState([-6, 13.9, 16.21]);
 
   
 
@@ -14,7 +14,7 @@ function App() {
     const cameraPositioning = (e) => {
       if (e.key === 'k') {
         setFpCamera(!fpCamera)
-        if(!fpCamera) setCameraPosition([-6, 13.9, 6.21 + Math.random() * 0.01])
+        if(!fpCamera) setCameraPosition([-6, 13.9, 16.21 + Math.random() * 0.01])
       }
       return
     }
@@ -25,15 +25,14 @@ function App() {
   
   return (
     <Suspense fallback={null}>
-      {/* <Environment 
+      <Environment 
         files={'/textures/envmap.hdr'}
         background='only'
-      /> */}
-      <Physics gravity={[0,-9.81,0]} defaultContactMaterial={{ contactEquationStiffness: 10 }} >
+      />
+      <Physics gravity={[0,-9.81,0]} >
           <Debug>
             <Ground />
             <Auto fpCamera={fpCamera} />
-            {/* <Sphere /> */}
           </Debug>
           <PerspectiveCamera makeDefault position={cameraPosition} fov={75} />
           {!fpCamera && (

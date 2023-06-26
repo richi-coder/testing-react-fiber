@@ -30,12 +30,12 @@ function useWheels() {
 
       const wheelInfo1 = {
         ...wheelInfo,
-        chassisConnectionPointLocal: [-width, 0.5, front*1.5],
+        chassisConnectionPointLocal: [-width, 0.5, front*1.87],
         isFrontWheel: true,
       }
       const wheelInfo2 = {
         ...wheelInfo,
-        chassisConnectionPointLocal: [width, 0.5, front*1.5],
+        chassisConnectionPointLocal: [width, 0.5, front*1.87],
         isFrontWheel: true,
       }
       const wheelInfo3 = {
@@ -57,9 +57,9 @@ function useWheels() {
         material: 'wheel',
         shapes: [
           {
-            args: [radius*2, radius*2, 0.5, 25],
+            args: [radius*2, radius*2, 0.5, 15],
             rotation: [0, 0, Math.PI/2],
-            type: 'Sphere',
+            type: 'Cylinder',
           }
         ],
         type: 'Kinematic',
