@@ -17,7 +17,7 @@ function useWheels() {
         directionLocal: [0, -1, 0],
         axleLocal: [-1, 0, 0],
         suspensionStiffness: 30,
-        suspensionRestLength: 0.4,
+        suspensionRestLength: 0.6,
         frictionSlip: 1.7,
         dampingRelaxation: 2.3,
         dampingCompression: 4.4,

@@ -40,51 +40,46 @@ function Auto({ fpCamera }) {
         chassisBody,
         wheelInfos,
         wheels,
-        // indexForwardAxis: -1,
-        // indexRightAxis: 0,
-        // indexUpAxis: 0
+        indexForwardAxis: 2,
+        indexRightAxis: 0,
+        indexUpAxis: 1
         }),
         useRef(null),
         );
     
     // custom controls hook
     useControls(vehicleApi, chassisApi)
-
     
     // render loop
     useFrame((state) => {
       // Updating dashboard
       chassisApi.velocity.subscribe((vel) => {
-        console.log(chassisApi);
         callVehicle.updateVelocity(Math.floor(vel[2]))
-        return
       })
       // Checking sliding
       // vehicleApi.sliding.subscribe(slide => console.log(slide))
       if (!fpCamera) {
-        // let position = new Vector3(0,0,0);
-        // position.setFromMatrixPosition(chassisBody.current.matrixWorld);
-        // state.camera.lookAt(position);
+        let position = new Vector3(0,0,0);
+        position.setFromMatrixPosition(chassisBody.current.matrixWorld);
+        state.camera.lookAt(position);
         return
       }
-
         let position = new Vector3(0,0,0);
         position.setFromMatrixPosition(chassisBody.current.matrixWorld);
 
         let quaternion = new Quaternion(0, 0, 0, 0);
         quaternion.setFromRotationMatrix(chassisBody.current.matrixWorld);
 
-        let wDir = new Vector3(0,0,1);
+        let wDir = new Vector3(0,0,0);
         wDir.applyQuaternion(quaternion);
         wDir.normalize();
 
-        let cameraPosition = position.clone().add(wDir.clone().multiplyScalar(1).add(new Vector3(0, 3, -7.5)));
+        let cameraPosition = position.clone().add(wDir.clone().multiplyScalar(1).add(new Vector3(0, 3, -5)));
         
-        wDir.add(new Vector3(0, 0.5, 0));
         state.camera.position.copy(cameraPosition);
-        state.camera.lookAt(position);
-      
-      
+        // state.camera.quaternion.copy(quaternion)
+        state.camera.lookAt(position)
+        
     })
 
 
@@ -101,7 +96,6 @@ function Auto({ fpCamera }) {
         chassisApi.velocity.set(0,0,0)
         chassisApi.angularVelocity.set(0,0,0)
         chassisApi.rotation.set(0,0,0)
-        console.log(chassisApi);
       }
     }
     

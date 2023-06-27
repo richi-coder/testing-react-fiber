@@ -6,7 +6,7 @@ import Auto from "./Auto"
 
 function App() {
   const [fpCamera, setFpCamera] = useState(false)
-  const [cameraPosition, setCameraPosition] = useState([-6, 13.9, 16.21]);
+  // const [cameraPosition, setCameraPosition] = useState([-6, 13.9, 16.21]);
 
   
 
@@ -14,7 +14,6 @@ function App() {
     const cameraPositioning = (e) => {
       if (e.key === 'k') {
         setFpCamera(!fpCamera)
-        if(!fpCamera) setCameraPosition([-6, 13.9, 16.21 + Math.random() * 0.01])
       }
       return
     }
@@ -29,12 +28,11 @@ function App() {
         files={'/textures/envmap.hdr'}
         background='only'
       />
-      <Physics gravity={[0,-9.81,0]} >
+      <Physics gravity={[0,-9.81,0]} stepSize={1/60} size={6} maxSubSteps={10}>
           <Debug>
             <Ground />
             <Auto fpCamera={fpCamera} />
           </Debug>
-          <PerspectiveCamera makeDefault position={cameraPosition} fov={75} />
           {!fpCamera && (
           <OrbitControls target={[-2.64, -0.71, 0.03]} />
           )}

@@ -6,19 +6,16 @@ let maxSteerAngle = Math.PI/6;
 const ackerman = 0.1;
 
 function useControls(vehicleApi, chassisApi) {
-  const callVehicle = useVehicle();
   const carVelocity = useRef();
   
-  const throttleForce = -15000;
+  const throttleForce = -5000;
   const brakeForce = 5000;
   
   const vehicleControls = (e) => {
     
     chassisApi.velocity.subscribe(vel => {
       carVelocity.current = vel[2]
-      return
     })
-
     
     if (e.key == 'w') {
       vehicleApi.applyEngineForce(throttleForce, 2)

@@ -25,7 +25,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <Dashboard />
     <Canvas frameloop="demand">
         <App />
-        <ambientLight intensity={0.5}/>
+        <ambientLight intensity={0.7}/>
         <directionalLight color='white' position={[0,0,5]} />
     </Canvas>
   </GameContext>
