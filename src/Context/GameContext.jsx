@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useRef, useState } from "react"
 
 export const ContextGame = createContext();
 
@@ -7,15 +7,16 @@ export const useVehicle = () => {
 }
 
 function GameContext({ children }) {
-    
-    const [velocity, setVelocity] = useState(0);
+    const velocity = useRef();
+    velocity.current = 0;
+    // const [velocity, setVelocity] = useState(0);
 
-    const updateVelocity = (velocity) => {
-        setVelocity(velocity)
+    const updateVelocity = (vel) => {
+        velocity.current = vel
     }
 
     const vehicleVelocity = {
-        velocity,
+        velocity: velocity.current,
         updateVelocity
     }
 
